@@ -1402,6 +1402,7 @@ html {
   left: 0;
   width: min(1240px, 100%);
   padding-top: 54px;
+  display: none;
 }
 .dropdown__inner {
   --inner-padding: 30px;
@@ -1420,9 +1421,14 @@ html {
   filter: var(--dropdown-arrow-color);
 }
 
+.top-menu {
+  --main-column-width: 292px;
+  --max-inner-height: calc(min(582px, 100vh - 158px) - var(--inner-padding) * 2);
+  position: relative;
+}
 .top-menu__main {
-  width: 292px;
-  max-height: calc(min(582px, 100vh - 158px) - var(--inner-padding) * 2);
+  width: var(--main-column-width);
+  height: var(--max-inner-height);
   border-right: 1px solid var(--top-menu-border-color);
   overflow-y: auto;
 }
@@ -1431,11 +1437,19 @@ html {
   display: flex;
   gap: 14px;
 }
+.menu-column + .menu-column {
+  margin-top: calc(var(--inner-padding) - 1.1px);
+}
 .menu-column__icon {
+  position: relative;
   flex-shrink: 0;
   width: 36px;
   height: 36px;
-  position: relative;
+}
+@media (max-width: 1199.98px) {
+  .menu-column__icon {
+    display: none;
+  }
 }
 .menu-column__content {
   flex: 1;
@@ -1443,7 +1457,7 @@ html {
 .menu-column__icon-1 {
   width: 30px;
   height: 30px;
-  object-fit: cover;
+  object-fit: contain;
 }
 .menu-column__icon-2 {
   position: absolute;
@@ -1451,7 +1465,7 @@ html {
   bottom: 0;
   width: 24px;
   height: 24px;
-  object-fit: cover;
+  object-fit: contain;
   filter: var(--menu-column-icon-color);
 }
 .menu-column__heading {
@@ -1462,6 +1476,13 @@ html {
 .menu-column__list {
   margin-top: 19px;
 }
+.menu-column__item--active .sub-menu {
+  display: grid;
+}
+.menu-column__item--active > .menu-column__link, .menu-column__item:hover > .menu-column__link {
+  color: #0071dc;
+  font-weight: 500;
+}
 .menu-column__link {
   display: block;
   padding: 7px 0;
@@ -1469,9 +1490,23 @@ html {
   font-weight: 400;
   line-height: 1.42857; /* 142.857% */
 }
-.menu-column__link:hover {
-  color: #0071dc;
-  font-weight: 500;
+
+.sub-menu {
+  position: absolute;
+  inset: 0 0 0 var(--main-column-width);
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding-left: var(--inner-padding);
+  overflow-y: auto;
+}
+.sub-menu--not-main {
+  position: initial;
+  inset: initial;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: var(--max-inner-height);
+  padding-left: 0;
 }
 
 /*# sourceMappingURL=main.css.map */
