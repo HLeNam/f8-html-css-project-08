@@ -50,7 +50,7 @@ html {
     // Filter form
     --filter-form-bg-color: #fff;
     --filter-form-shadow: rgba(200, 200, 200, 0.4);
-    --filter-form-tag-bg-color: #f8f8fb;
+    --form-tag-bg-color: #f8f8fb;
 
     // Auth
     --auth-content-bg-color: #fff;
@@ -61,4 +61,36 @@ html {
 
     // Forms
     --form-placeholder-color: #d2d1d6;
+
+    // Product detail
+    --product-detail-bg-color: #fff;
+    --product-detail-info-bg-color: #f6f6f6;
+    --product-detail-info-content-bg-color: #fff;
+    --product-detail-tag-bg-color: #ededf6;
+
+    @include abstracts.screen(md) {
+        --product-detail-bg-color: #fafafd;
+        --product-detail-info-bg-color: #fff;
+    }
+
+    // Breadcrumbs
+    --breadcrumbs-bg-color: #f6f6f6;
+    --breadcrumbs-shadow: rgba(237, 237, 246, 0.2);
+
+    @include abstracts.screen(md) {
+        --breadcrumbs-bg-color: #fff;
+    }
+
+    // Search bar
+    --search-bar-bg-color: #fff;
+
+    // Review card
+    --review-card-bg-color: #fafafd;
+
+    @include abstracts.screen(md) {
+        --review-card-bg-color: #fff;
+    }
+
+    // Text content
+    --text-content-hr-bg-color: #ebebeb;
 }
