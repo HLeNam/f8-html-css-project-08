@@ -8,6 +8,24 @@ $error-color: #ed4337;
         pointer-events: none;
     }
 
+    &__row {
+        display: flex;
+        gap: 30px;
+
+        @include abstracts.screen(md) {
+            gap: 20px;
+        }
+
+        @include abstracts.screen(sm) {
+            flex-direction: column;
+            gap: 0;
+        }
+
+        > * {
+            flex: 1;
+        }
+    }
+
     &__group {
         margin-top: 30px;
 
@@ -37,17 +55,35 @@ $error-color: #ed4337;
         }
     }
 
+    &__text-area,
     &__text-input {
         display: flex;
         align-items: center;
 
-        height: 50px;
         padding: 0 12px;
         border-radius: 10px;
-        border: 1.5px solid #d2d1d6;
+        border: 1px solid #d2d1d6;
 
         &:focus-within {
             border-color: #77dae6;
+        }
+    }
+
+    &__text-area {
+        height: 100px;
+        padding: 12px;
+
+        &-input {
+            resize: none;
+        }
+    }
+
+    &__text-input {
+        position: relative;
+        height: 50px;
+
+        &--small {
+            height: 42px;
         }
 
         @include abstracts.screen(md) {
@@ -69,25 +105,152 @@ $error-color: #ed4337;
         animation: shake 0.5s;
     }
 
-    &__input {
+    &__input,
+    &__text-area-input {
         flex: 1;
+        width: 100%;
         height: 100%;
-
         font-size: 1.8rem;
         font-weight: 500;
         line-height: 144.444%; /* 144.444% */
-
-        &-icon,
-        &-icon-error {
-            width: 24px;
-            margin-left: 12px;
-        }
 
         &::placeholder {
             color: var(--form-placeholder-color);
         }
 
         @include abstracts.screen(md) {
+            font-size: 1.6rem;
+        }
+    }
+
+    &__input {
+        &-icon,
+        &-icon-error {
+            width: 24px;
+            margin-left: 12px;
+        }
+    }
+
+    &__select-dialog {
+        position: absolute;
+        bottom: 44px;
+        left: 10px;
+        z-index: 1;
+
+        display: flex;
+        flex-direction: column;
+
+        opacity: 0;
+        visibility: hidden;
+        translate: 0 8px;
+
+        transition: opacity, visibility, translate;
+        transition-duration: 0.2s;
+
+        min-width: 230px;
+        max-height: 310px;
+        padding-bottom: 10px;
+        border-radius: 10px;
+        border: 1px solid #d2d1d6;
+        box-shadow: 0 0 5px var(--form-select-dialog-shadow);
+
+        background: var(--form-select-dialog-bg-color);
+
+        &.show {
+            opacity: 1;
+            visibility: visible;
+            translate: 0;
+        }
+
+        @include abstracts.screen(sm) {
+            position: fixed;
+            max-width: initial;
+            max-height: initial;
+            inset: 0;
+            border: none;
+            border-radius: 0;
+        }
+    }
+
+    &__dialog-heading {
+        padding: 20px;
+        font-size: 1.8rem;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    &__close-dialog {
+        font-size: 3rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 12px 18px;
+        opacity: 0.8;
+    }
+
+    &__search {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+
+        height: 38px;
+        padding: 0 20px;
+        border-bottom: 1px solid #d2d1d6;
+
+        &-input {
+            flex: 1;
+            height: 100%;
+            font-size: 1.6rem;
+        }
+
+        &-icon {
+            width: 16px;
+            margin-left: 10px;
+        }
+
+        @include abstracts.screen(lg) {
+            height: 48px;
+
+            &-icon {
+                width: 20px;
+            }
+        }
+
+        @include abstracts.screen(sm) {
+            padding: 0 14px;
+            border: 1px solid #d2d1d6;
+            margin: 10px 30px 0;
+            border-radius: 10px;
+        }
+    }
+
+    &__options-list {
+        flex: 1;
+        margin-top: 10px;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+
+        @supports (-webkit-touch-callout: none) {
+            padding-bottom: 300px;
+        }
+    }
+
+    &__option {
+        padding: 8px 20px;
+        font-size: 1.4rem;
+
+        &--current {
+            font-weight: 500;
+            background: rgba($color: #ffb700, $alpha: 0.6);
+        }
+
+        &:not(&--current):hover {
+            background: var(--form-option-hover-bg-color);
+            cursor: pointer;
+        }
+
+        @include abstracts.screen(lg) {
+            padding: 18px 30px;
             font-size: 1.6rem;
         }
     }
@@ -125,7 +288,7 @@ $error-color: #ed4337;
             width: 19px;
             height: 19px;
             border-radius: 5px;
-            border: 1.5px solid #9e9da8;
+            border: 1px solid #9e9da8;
         }
     }
 
@@ -151,6 +314,13 @@ $error-color: #ed4337;
         font-size: 2.2rem;
         font-weight: 500;
         line-height: 1.45455; /* 145.455% */
+
+        &--medium {
+            margin-bottom: 20px;
+
+            font-size: 1.8rem;
+            line-height: 144.444%; /* 144.444% */
+        }
 
         &--small {
             margin-bottom: 10px;

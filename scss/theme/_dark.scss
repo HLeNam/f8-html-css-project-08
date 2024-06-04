@@ -67,6 +67,9 @@ html.dark {
 
     // Forms
     --form-placeholder-color: #b9babe;
+    --form-select-dialog-shadow: rgba($color: #fff, $alpha: 0.2);
+    --form-select-dialog-bg-color: var(--dropdown-bg-color);
+    --form-option-hover-bg-color: #292e39;
 
     // Product detail
     --product-detail-bg-color: #292e39;
@@ -96,4 +99,16 @@ html.dark {
 
     // Text content
     --text-content-hr-bg-color: #414349;
+
+    // Checkout
+    --checkout-breadcrumbs-bg-color: #171c28;
+    --checkout-cart-info-bg-color: #171c28;
+    --checkout-cart-info-shadow: rgba(23, 28, 40, 0.2);
+    --checkout-border-color: #292e39;
+    --checkout-gift-shadow: rgba(23, 28, 40, 0.2);
+    --checkout-payment-item-bg-color: #292e39;
+
+    // Model
+    --model-bg-color: var(--dropdown-bg-color);
+    --model-shadow: var(--dropdown-shadow-color);
 }
