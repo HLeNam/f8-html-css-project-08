@@ -39,7 +39,7 @@ $error-color: #ed4337;
         }
     }
 
-    &__group:has(:invalid):has(&__input:not(:placeholder-shown)) {
+    &__group:has(:invalid):has(&__input:not(:placeholder-shown, &__input[type="date"])) {
         .form__text-input {
             border-color: $error-color;
             background: rgba($color: $error-color, $alpha: 0.1);
@@ -80,7 +80,7 @@ $error-color: #ed4337;
 
     &__text-input {
         position: relative;
-        height: 50px;
+        height: 48px;
 
         &--small {
             height: 42px;
